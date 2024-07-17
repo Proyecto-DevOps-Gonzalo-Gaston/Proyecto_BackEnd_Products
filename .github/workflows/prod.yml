@@ -112,4 +112,6 @@ jobs:
         run: |
           docker tag products-service-example:prod ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/proyecto-devops-gg-products:prod
           docker push ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ secrets.AWS_REGION }}.amazonaws.com/proyecto-devops-gg-products:prod
-
+      
+      - name: Forzar nuevo Deployment del servicio
+        run: aws ecs update-service --cluster fargate-cluster-be-gg --service be-products-svc --force-new-deployment
